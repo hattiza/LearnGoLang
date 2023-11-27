@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
-	"time"
 )
 
 const prompt = "and do not type your number in, just press ENTER when ready."
@@ -13,14 +12,13 @@ const prompt = "and do not type your number in, just press ENTER when ready."
 func GuessGame() {
 	// seed the random number generator
 	// so it is actually random
-	rand.Seed(time.Now().UnixNano())
+	// rand.Seed(time.Now().UnixNano()) - no longer needed as of Go 1.20
 
 	// Generate a random number between 1 and 100
 	var firstNumber = rand.Intn(8) + 2 // from 2 to 10
 	var secondNumber = rand.Intn(8) + 2
 	var substraction = rand.Intn(8) + 2
-	var answer int
-
+	var answer = firstNumber*secondNumber - substraction
 	var reader = bufio.NewReader(os.Stdin)
 
 	// display a welcome/instruction
@@ -42,6 +40,9 @@ func GuessGame() {
 	reader.ReadString('\n')
 
 	// give them the answer
-	answer = firstNumber*secondNumber - substraction
 	fmt.Println("The answer is:", answer, "!")
+}
+
+func play() {
+	//
 }
