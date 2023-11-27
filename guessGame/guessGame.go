@@ -3,15 +3,22 @@ package guessGame
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
+	"time"
 )
 
-const prompt = "and press ENTER when ready."
+const prompt = "and do not type your number in, just press ENTER when ready."
 
-func guessGame() {
-	var firstNumber = 2
-	var secondNumber = 5
-	var substraction = 7
+func GuessGame() {
+	// seed the random number generator
+	// so it is actually random
+	rand.Seed(time.Now().UnixNano())
+
+	// Generate a random number between 1 and 100
+	var firstNumber = rand.Intn(8) + 2 // from 2 to 10
+	var secondNumber = rand.Intn(8) + 2
+	var substraction = rand.Intn(8) + 2
 	var answer int
 
 	var reader = bufio.NewReader(os.Stdin)
